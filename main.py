@@ -2,8 +2,8 @@ import turtle
 import pandas
 from messenger import Messenger
 
-image = "blank_states_img.gif"
-csv = "50_states.csv"
+image = "indiamap_2.gif"
+csv = "indian_states.csv"
 done = "states_done.csv"
 
 
@@ -21,8 +21,8 @@ def extract_and_display_state(row):
 # Set up the Screen
 # =================
 screen = turtle.Screen()
-screen.title("U.S. States Game")
-screen.setup(width=725, height=491)  # Sets the actual window size
+screen.title("India States Game")
+screen.setup(width=800, height=800)  # Sets the actual window size
 # screen.screensize(canvwidth=725, canvheight=491)  # Sets the size of the canvas the turtles are drawing on
 
 screen.bgpic(image)
@@ -31,7 +31,7 @@ screen.bgpic(image)
 
 # player_msg displays information to the player
 player_msg = Messenger(
-    fontcolor="red",
+    fontcolor="yellow",
     fontsize=24,
     fonttype="bold italic",
 )
@@ -39,13 +39,12 @@ player_msg = Messenger(
 # state_msg displays the state names on the map
 state_msg = Messenger(
     fontcolor="black",
-    fontsize=8,
-    fonttype="normal",
+    fontsize=15,
+    fonttype="bold",
 )
 
 # Read the CSV into a Pandas DataFrame
 df = pandas.read_csv(csv)
-
 
 # Game Loop
 # =========
@@ -56,7 +55,7 @@ correct_states = []
 
 while game_on:
     # Get the player answer
-    answer = screen.textinput(title=f"{score}/{total} States Correct", prompt="Name a U.S. state :")
+    answer = screen.textinput(title=f"{score}/{total} States Correct", prompt="Guess any state name :")
 
     # Prevent .title() crash if cancelled or nothing is input
     if answer is None:
@@ -89,7 +88,5 @@ while game_on:
                     game_on = False
                     player_msg.pencolor("green")
                     player_msg.message_time("Completed.\nWell Done!", 5)
-
-
 
 turtle.mainloop()  # Keep the window open when the program ends
